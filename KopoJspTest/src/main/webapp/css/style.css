@@ -1,0 +1,15 @@
+.fourth {
+			background: gold;
+			border-color: white;
+			color: black;
+			background-image: linear-gradient(45deg, yellow 50%, transparent 50%);
+			background-position: 100%;
+			background-size: 400%;
+			transition: background 300ms ease-in-out;
+			border-radius: 5px;
+			font-size: 15px;
+		}
+		
+		.fourth:hover {
+			background-position: 0;
+		}

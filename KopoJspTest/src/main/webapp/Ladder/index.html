@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>  
+	<meta charset="UTF-8">  <!--한글 인코딩-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">   <!--문자셋 메타 정보-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  <!--뷰포트 메타 정보-->
+    <title>사다리타기 개수</title>
+    <style>
+        .main {
+    		text-align:center;    		
+            width: 100%;
+            height: 100%;
+        }
+                
+        .image-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .arrow {
+            font-size: 100px;
+            cursor: pointer;
+        }
+                        
+         .fourth{
+	        background: gold;
+	        border-color: white;
+	        color: black;
+	        background-image: linear-gradient(45deg, yellow 50%, transparent 50%);
+	        background-position: 100%;
+	        background-size: 400%;
+	        transition: background 300ms ease-in-out;
+	        border-radius: 5px;
+	        font-size: 30px;
+            padding: 10px 20px; /* Adjust the padding to your desired size */
+      	}
+	    .fourth:hover {
+	   		background-position: 0;
+	    }
+    </style>
+    <script>
+        var currentImage = 16;
+
+        function updateImage() {
+            var imageElement = document.getElementById("number-image");
+            var hiddenInputElement = document.getElementById("number-col");
+            var hiddenInputElement2 = document.getElementById("number-row");
+            hiddenInputElement.value = currentImage;
+            hiddenInputElement2.value = parseInt(currentImage/2+(Math.random()*2));
+            imageElement.src = "./img/num" + currentImage + ".png";
+        }
+
+        function previousImage() {
+            currentImage--;
+            if (currentImage < 2) {
+                currentImage = 2;
+            }
+            updateImage();
+        }
+
+        function nextImage() {
+            currentImage++;
+            // Adjust the upper limit according to your image count
+            if (currentImage > 30) {
+                currentImage = 30;
+            }
+            updateImage();
+        }
+    </script>
+</head>
+<body>
+<div class='main'>
+<h1>사다리타기</h1>
+<hr>
+    <div class="image-wrapper">
+        <span class="arrow" onclick="previousImage()">&lt;</span>
+        <img id="number-image" src="./img/num16.png" alt="Number Image" width="200">
+        <span class="arrow" onclick="nextImage()">&gt;</span>
+    </div>
+    <br>
+    <div>
+    	<form method="post" action="ladderForm.jsp">
+	    	<input id="number-row" type="hidden" name="row" value=8>
+	    	<input id="number-col" type="hidden" name="col" value=16>
+			<input type="submit" class="fourth" value="Start">
+	    </form>
+    </div>
+</div>
+    
+</body>
+</html>
